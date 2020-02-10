@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/scss/index.scss"],"names":[],"mappings":"AAGA,GACC,SAJU","file":"scss.8ee2b1e9.css","sourceRoot":"..","sourcesContent":["$color: red;\n$color2: #efefef;\n\nh1{\n\tcolor: $color;\n}\n"]}

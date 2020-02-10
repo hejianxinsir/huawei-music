@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+#player {
+  height: 100vh;
+  background: #060a3d; }
+  #player .header {
+    text-align: center; }
+    #player .header h1 {
+      color: #fff;
+      font-size: 18px;
+      padding-top: 20px; }
+    #player .header p {
+      color: #868aaf;
+      font-size: 10px;
+      margin: 3px 0; }
+  #player .area-effect .balls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3px; }
+    #player .area-effect .balls span {
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: #6a134f;
+      border-radius: 50%; }
+      #player .area-effect .balls span.current {
+        width: 8px;
+        height: 8px;
+        background: #c02390;
+        margin-right: 7px; }
+  #player .area-effect .panel-effect > .effect {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh; }
+    #player .area-effect .panel-effect > .effect > div {
+      position: absolute;
+      color: #fff; }
+    #player .area-effect .panel-effect > .effect .effect-1 {
+      background: url(/effect-no-move.e6a51026.svg) 0 0 no-repeat;
+      width: 80vw;
+      height: 80vw;
+      animation: clockWise 21s linear infinite; }
+    #player .area-effect .panel-effect > .effect .effect-2 {
+      background: url(/effect-move1.8d0ce205.svg) 0 0 no-repeat;
+      width: 70vw;
+      height: 70vw;
+      animation: clockWise 21s linear infinite reverse; }
+    #player .area-effect .panel-effect > .effect .effect-3 {
+      background: url(/effect-move2.143040a0.svg) 0 0 no-repeat;
+      width: 34vw;
+      height: 34vw;
+      animation: clockWise 21s linear infinite; }
+  #player .area-effect .lyrics p {
+    color: #fff;
+    font-size: 10px;
+    text-align: center; }
+  #player .area-effect .lyrics .next-lyrics {
+    color: #868aaf;
+    font-size: 8px;
+    margin: 5px 0; }
+  #player .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; }
+    #player .buttons svg {
+      width: 25px;
+      height: 25px;
+      margin: 0 20px; }
+
+@keyframes clockWise {
+  0% {
+    transform: rotate(0); }
+  100% {
+    transform: rotate(360deg); } }
+
+
+/*# sourceMappingURL=/scss.8c25d549.css.map */
