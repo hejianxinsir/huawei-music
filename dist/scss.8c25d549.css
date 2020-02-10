@@ -36,7 +36,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 65vh; }
+    height: 58vh; }
     #player .area-effect .panel-effect > .effect > div {
       position: absolute;
       color: #fff; }
@@ -67,11 +67,48 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px; }
+    margin-top: 20px; }
     #player .buttons svg {
       width: 25px;
       height: 25px;
-      margin: 0 20px; }
+      margin: 0 30px; }
+  #player .bar-area {
+    color: #868aaf;
+    font-size: 12px;
+    display: flex;
+    padding: 0 20px;
+    margin-top: 20px;
+    align-items: center; }
+    #player .bar-area .time-start {
+      order: 1;
+      width: 40px; }
+    #player .bar-area .time-end {
+      order: 3;
+      width: 40px; }
+    #player .bar-area .bar {
+      flex: 1;
+      order: 2;
+      height: 4px;
+      background: #0025f1;
+      border-radius: 2px;
+      margin: 0 12px; }
+      #player .bar-area .bar .progress {
+        width: 0%;
+        transition: all .2s;
+        height: 100%;
+        border-radius: 2px;
+        background: #db3baa;
+        position: relative; }
+        #player .bar-area .bar .progress::after {
+          content: '';
+          position: absolute;
+          right: -8px;
+          top: -7px;
+          display: block;
+          width: 16px;
+          height: 16px;
+          background: url(/progress.798a5c76.svg) 0 0 no-repeat;
+          background-size: contain; }
 
 @keyframes clockWise {
   0% {
