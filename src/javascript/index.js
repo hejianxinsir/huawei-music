@@ -1,1 +1,2 @@
-console.log('成功')
+import './icons.js'
+console.log('222')

@@ -109,6 +109,18 @@
           height: 16px;
           background: url(/progress.798a5c76.svg) 0 0 no-repeat;
           background-size: contain; }
+  #player .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 20px; }
+    #player .actions svg {
+      width: 28px;
+      height: 28px; }
+      #player .actions svg.btn-play-pause {
+        width: 50px;
+        height: 50px; }
 
 @keyframes clockWise {
   0% {
