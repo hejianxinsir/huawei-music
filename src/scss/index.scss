@@ -12,6 +12,7 @@ $color3: #0025f1;
 	height: 100vh;
 	background: $background;
 	.header{
+		height: 100px;
 		text-align: center;
 		h1{
 			color: $color;
@@ -23,34 +24,53 @@ $color3: #0025f1;
 			font-size: 10px;
 			margin: 3px 0;
 		}
-	}
-
-	.area-effect{ 
 		.balls{
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin-top: 3px;
 			span{
 				display: block;
 				width: 6px; height: 6px;   	
-		  		background: $color2-darker;
-			  	border-radius: 50%;
-			                              
-			  	&.current{
+				  background: $color2-darker;
+				  border-radius: 50%;
+										  
+				  &.current{
 					width: 8px; height: 8px;
-        			background: $color2-dark;
+					background: $color2-dark;
 					margin-right: 7px;
 			  }
 			}	
 		}
-		.panel-effect{
-			>.effect{
+	}
+
+	.panels{
+		height: calc(100vh - 240px);
+		align-items: center;
+		width: 200vw;
+		display: flex;
+		transform: translateX(-100vw);
+		transition: transform 0.3s;
+
+		&.panels1{
+			transform: translateX(0vw);
+		}
+		&.panels2{
+			transform: translateX(-100vw);
+			transition: transform .3s;
+		}
+		.panels-effect{
+			width: 100vw;
+			height: 100%;
+			/*下面三句，将内容垂直居中*/
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			.effect{
 				position: relative;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				height: 58vh;
+				height: 55vh;
 				>div{
 					position: absolute;
 					color: $color;
@@ -74,92 +94,98 @@ $color3: #0025f1;
 					animation: clockWise 21s linear infinite;
 				}
 			}
+			.lyrics{
+				p{
+					color: $color;
+					font-size: 10px;
+					text-align: center;
+				}
+				.next-lyrics{
+					color: $color1;
+					font-size: 8px;
+				}
+			}
 		}
-		.lyrics{
-			p{
-				color: $color;
-				font-size: 10px;
-				text-align: center;
-			}
-			.next-lyrics{
-				color: $color1;
-				font-size: 8px;
-				margin: 5px 0;
-			}
+		.panels-lyrics{
+			text-align: center;
+			color: $color;
+			width: 100vw;
+			height: 100%;
+			background: pink;
 		}
 	}
-	.buttons{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-top: 20px;
-		svg{
-			width: 25px; height: 25px;
-			margin: 0 30px;
+	
+	.footer{
+		height: 140px;
+		.buttons{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			svg{
+				width: 25px; height: 25px;
+				margin: 0 30px;
+			}
 		}
-	}
-
-	.bar-area{
-		color: $color1;
-		font-size: 12px;
-		display: flex;
-		padding: 0 20px;
-		margin-top: 20px;
-		align-items: center;
-		.time-start{
-			order: 1;
-			width: 40px;
-		}
-		.time-end{
-			order: 3;
-			width: 40px;
-		}
-		.bar{
-			flex: 1;
-			order: 2;
-			height: 4px;
-			background: $color3;
-			border-radius: 2px;
-			margin: 0 12px;
-			.progress{
-				width: 0%;
-				transition: all .2s;
-				height: 100%;
+		.bar-area{
+			color: $color1;
+			font-size: 12px;
+			display: flex;
+			align-items: center;
+			margin: 7px 14px;
+			.time-start{
+				order: 1;
+				width: 40px;
+			}
+			.time-end{
+				order: 3;
+				width: 40px;
+			}
+			.bar{
+				flex: 1;
+				order: 2;
+				height: 4px;
+				background: $color3;
 				border-radius: 2px;
-				background: $color2;
-				position: relative;
-
-				&::after{
-					content: '';
-					position: absolute;
-					right: -8px;
-					top: -7px;
-					display: block;
-					width: 16px;
-					height: 16px;
-					background: url(../svg/progress.svg) 0 0 no-repeat;
-					background-size: contain;
+				margin: 20px 10px;
+				.progress{
+					width: 0%;
+					transition: all .2s;
+					height: 100%;
+					border-radius: 2px;
+					background: $color2;
+					position: relative;
+	
+					&::after{
+						content: '';
+						position: absolute;
+						right: -8px;
+						top: -7px;
+						display: block;
+						width: 16px;
+						height: 16px;
+						background: url(../svg/progress.svg) 0 0 no-repeat;
+						background-size: contain;
+					}
+				}
+			}
+		}
+		.actions{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 35px;
+			svg{
+				width: 28px;
+				height: 28px;
+	
+				&.btn-play-pause {
+					width: 40px;
+					height: 40px;
 				}
 			}
 		}
 	}
-	.actions{
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin: 20px 5px;
-		padding: 0 35px;
-
-		svg{
-			width: 30px;
-			height: 30px;
-
-			&.btn-play-pause {
-				width: 40px;
-				height: 40px;
-			}
-		}
-	}
+	
 
 }
 
