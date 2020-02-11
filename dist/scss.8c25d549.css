@@ -113,14 +113,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
-    padding: 0 20px; }
+    margin: 20px 5px;
+    padding: 0 35px; }
     #player .actions svg {
-      width: 28px;
-      height: 28px; }
+      width: 30px;
+      height: 30px; }
       #player .actions svg.btn-play-pause {
-        width: 50px;
-        height: 50px; }
+        width: 40px;
+        height: 40px; }
 
 @keyframes clockWise {
   0% {
