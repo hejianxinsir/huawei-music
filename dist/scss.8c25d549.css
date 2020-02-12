@@ -5,7 +5,8 @@
 
 #player {
   height: 100vh;
-  background: #060a3d; }
+  background: #060a3d;
+  overflow: hidden; }
   #player .header {
     height: 100px;
     text-align: center; }

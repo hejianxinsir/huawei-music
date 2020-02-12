@@ -2,7 +2,7 @@ import './icons.js'
 console.log('222')
 
 const $ = selector => document.querySelector(selector)
-const $$ =  selector => document.querySelector(selector)
+const $$ =  selector => document.querySelectorAll(selector)
 
 class Player {
     constructor(node){
@@ -13,20 +13,21 @@ class Player {
         this.bind()
     }
 
-    start(){
+    start() {
         fetch('https://jirengu.github.io/data-mock/huawei-music/music-list.json')
             .then(res => res.json())
             .then(data => {
                 console.log(data)
                 this.songList = data
+                this.audio.src = this.songList[this.currentIndex].url
             })
     }
 
-    bind(){
+    bind() {
         let self = this
         
-        this.root.querySelector('.btn-play-pause').onclick = function(){
-            self.audio.src = self.songList[self.currentIndex].url
+        this.root.querySelector('.btn-play-pause').onclick = function() {
+            
             if(this.classList.contains('playing')) {
                 self.audio.pause()
                 this.classList.remove('playing')
@@ -39,11 +40,25 @@ class Player {
                 this.querySelector('use').setAttribute('xlink:href', '#icon-pause')
             }
         }
+
+        this.root.querySelector('.btn-pre').onclick = function() {
+            self.playPrevSong()
+        }
+        this.root.querySelector('.btn-next').onclick = function(){
+            self.playNextSong()
+        }
     }
 
-    // playSong(){
-    //     this.audio.play()
-    // }
+    playPrevSong(){
+        this.currentIndex = (this.songList.length + this.currentIndex - 1) % this.songList.length
+        this.audio.src = this.songList[this.currentIndex].url
+        this.audio.play()       
+    }
+    playNextSong(){
+        this.currentIndex = (this.songList.length + this.currentIndex + 1) % this.songList.length
+        this.audio.src = this.songList[this.currentIndex].url
+        this.audio.play()
+    }
 
 }
 

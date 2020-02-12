@@ -145,7 +145,7 @@ var $ = function $(selector) {
 };
 
 var $$ = function $$(selector) {
-  return document.querySelector(selector);
+  return document.querySelectorAll(selector);
 };
 
 var Player =
@@ -171,6 +171,7 @@ function () {
       }).then(function (data) {
         console.log(data);
         _this.songList = data;
+        _this.audio.src = _this.songList[_this.currentIndex].url;
       });
     }
   }, {
@@ -179,8 +180,6 @@ function () {
       var self = this;
 
       this.root.querySelector('.btn-play-pause').onclick = function () {
-        self.audio.src = self.songList[self.currentIndex].url;
-
         if (this.classList.contains('playing')) {
           self.audio.pause();
           this.classList.remove('playing');
@@ -193,10 +192,29 @@ function () {
           this.querySelector('use').setAttribute('xlink:href', '#icon-pause');
         }
       };
-    } // playSong(){
-    //     this.audio.play()
-    // }
 
+      this.root.querySelector('.btn-pre').onclick = function () {
+        self.playPrevSong();
+      };
+
+      this.root.querySelector('.btn-next').onclick = function () {
+        self.playNextSong();
+      };
+    }
+  }, {
+    key: "playPrevSong",
+    value: function playPrevSong() {
+      this.currentIndex = (this.songList.length + this.currentIndex - 1) % this.songList.length;
+      this.audio.src = this.songList[this.currentIndex].url;
+      this.audio.play();
+    }
+  }, {
+    key: "playNextSong",
+    value: function playNextSong() {
+      this.currentIndex = (this.songList.length + this.currentIndex + 1) % this.songList.length;
+      this.audio.src = this.songList[this.currentIndex].url;
+      this.audio.play();
+    }
   }]);
 
   return Player;
