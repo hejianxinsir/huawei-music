@@ -8,7 +8,7 @@ class Player {
     constructor(node){
         this.root = typeof node === 'string' ? $(node) : node
         this.currentIndex = 0
-        this.audio = new Audio
+        this.audio = new Audio()
         this.start()
         this.bind()
     }
@@ -23,15 +23,27 @@ class Player {
     }
 
     bind(){
-        this.root.querySelector('.btn-play-pause').onclick = () => {
-            this.playSong()
+        let self = this
+        
+        this.root.querySelector('.btn-play-pause').onclick = function(){
+            self.audio.src = self.songList[self.currentIndex].url
+            if(this.classList.contains('playing')) {
+                self.audio.pause()
+                this.classList.remove('playing')
+                this.classList.add('pause')
+                this.querySelector('use').setAttribute('xlink:href', '#icon-play')
+            }else if(this.classList.contains('pause')) {
+                self.audio.play()
+                this.classList.add('playing')
+                this.classList.remove('pause')
+                this.querySelector('use').setAttribute('xlink:href', '#icon-pause')
+            }
         }
     }
 
-    playSong(){
-        this.audio.src = this.songList[this.curentIndex]
-        this.audio.play()
-    }
+    // playSong(){
+    //     this.audio.play()
+    // }
 
 }
 
