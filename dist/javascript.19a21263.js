@@ -132,7 +132,68 @@ svgPlaceholder.innerHTML = "\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg s
 
 require("./icons.js");
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 console.log('222');
+
+var $ = function $(selector) {
+  return document.querySelector(selector);
+};
+
+var $$ = function $$(selector) {
+  return document.querySelector(selector);
+};
+
+var Player =
+/*#__PURE__*/
+function () {
+  function Player(node) {
+    _classCallCheck(this, Player);
+
+    this.root = typeof node === 'string' ? $(node) : node;
+    this.currentIndex = 0;
+    this.audio = new Audio();
+    this.start();
+    this.bind();
+  }
+
+  _createClass(Player, [{
+    key: "start",
+    value: function start() {
+      var _this = this;
+
+      fetch('https://jirengu.github.io/data-mock/huawei-music/music-list.json').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        console.log(data);
+        _this.songList = data;
+      });
+    }
+  }, {
+    key: "bind",
+    value: function bind() {
+      var _this2 = this;
+
+      this.root.querySelector('.btn-play-pause').onclick = function () {
+        _this2.playSong();
+      };
+    }
+  }, {
+    key: "playSong",
+    value: function playSong() {
+      this.audio.src = this.songList[this.curentIndex];
+      this.audio.play();
+    }
+  }]);
+
+  return Player;
+}();
+
+new Player('#player');
 },{"./icons.js":"src/javascript/icons.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
