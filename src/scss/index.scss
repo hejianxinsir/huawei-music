@@ -98,7 +98,7 @@ $color3: #0025f1;
 			.lyrics{
 				p{
 					color: $color;
-					font-size: 10px;
+					font-size: 14px;
 					text-align: center;
 				}
 				.next-lyrics{
@@ -108,11 +108,23 @@ $color3: #0025f1;
 			}
 		}
 		.panels-lyrics{
-			text-align: center;
-			color: $color;
 			width: 100vw;
 			height: 100%;
-			background: pink;
+			line-height: 2;
+			text-align: center;
+			overflow: hidden;
+			.container{
+				transition: all .3s;
+				transform: translateY(-30px);
+				p{
+					font-size: 14px;
+					color: $color1;
+					&.current {
+						color: $color;
+					}
+				}
+			}
+			
 		}
 	}
 	

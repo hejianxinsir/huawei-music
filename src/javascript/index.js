@@ -1,12 +1,12 @@
 import './icons.js';
 import Swiper from './swiper.js';
 
-const $ = selector => document.querySelector(selector)
-const $$ =  selector => document.querySelectorAll(selector)
-
 class Player {
     constructor(node){
-        this.root = typeof node === 'string' ? $(node) : node
+        this.root = typeof node === 'string' ? document.querySelector(node) : node
+        this.$ = selector => this.root.querySelector(selector)
+        this.$$ = selector => this.root.querySelectorAll(selector)
+
         this.currentIndex = 0
         this.audio = new Audio()
         this.start()
@@ -19,14 +19,14 @@ class Player {
             .then(data => {
                 console.log(data)
                 this.songList = data
-                this.audio.src = this.songList[this.currentIndex].url
+                this.renderSong()
             })
     }
 
     bind() {
         let self = this
         
-        this.root.querySelector('.btn-play-pause').onclick = function() {
+        this.$('.btn-play-pause').onclick = function() {
             
             if(this.classList.contains('playing')) {
                 self.audio.pause()
@@ -41,10 +41,10 @@ class Player {
             }
         }
 
-        this.root.querySelector('.btn-pre').onclick = function() {
+        this.$('.btn-pre').onclick = function() {
             self.playPrevSong()
         }
-        this.root.querySelector('.btn-next').onclick = function(){
+        this.$('.btn-next').onclick = function(){
             self.playNextSong()
         }
 
@@ -62,6 +62,30 @@ class Player {
         })
     }
 
+    renderSong(){
+        let songObj = this.songList[this.currentIndex]
+        this.$('.header h1').innerText = songObj.title
+        this.$('.header p').innerText = songObj.author + '-' + songObj.albumn
+        this.audio.src = songObj.url
+        this.loadLyrics()
+    }
+
+    loadLyrics(){
+        fetch(this.songList[this.currentIndex].lyric)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
+    setLineToCenter(node){
+        let offset = node.offsetTop - this.$('.panels .container').offsetHeight/2
+        offset = offset > 0 ? offset : 0
+        this.$('.panels .container').style.transform = `translateY(-${offset}px)`
+        this.$$('.panels .container p').forEach(node => node.classList.remove('current'))
+        node.classList.add('current')
+    }
+
     playPrevSong(){
         this.currentIndex = (this.songList.length + this.currentIndex - 1) % this.songList.length
         this.audio.src = this.songList[this.currentIndex].url
@@ -73,8 +97,6 @@ class Player {
         this.audio.oncanplaythrough = () => this.audio.play()
     }
 
-    
-    
 }
 
-new Player('#player')
+window.player = new Player('#player')
