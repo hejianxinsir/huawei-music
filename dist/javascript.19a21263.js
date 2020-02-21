@@ -235,16 +235,17 @@ function () {
     value: function start() {
       var _this2 = this;
 
-      fetch('https://jirengu.github.io/data-mock/huawei-music/music-list.json').then(function (res) {
+      fetch('https:jirengu.github.io/data-mock/huawei-music/music-list.json').then(function (res) {
         return res.json();
       }).then(function (data) {
+        console.log('data');
         console.log(data);
         _this2.songList = data;
 
         _this2.loadSong();
 
-        console.log(_this2.songList);
         console.log('this.songList');
+        console.log(_this2.songList);
       });
     }
   }, {
@@ -264,11 +265,7 @@ function () {
           this.classList.remove('pause');
           this.querySelector('use').setAttribute('xlink:href', '#icon-pause');
         }
-      }; // this.$('.btn-pre').onclick = function() {
-      //     console.log('pre')
-      //     self.playPrevSong()
-      // }
-
+      };
 
       this.$('.btn-pre').onclick = function () {
         console.log('pre');
@@ -291,23 +288,20 @@ function () {
 
       var swiper = new _swiper.default(this.$('.panels'));
       swiper.on('swipLeft', function () {
+        console.log('left');
         this.classList.remove('panels1');
         this.classList.add('panels2');
-        console.log('left');
+        self.$('.balls .first').classList.remove('current');
+        self.$('.balls .second').classList.add('current');
       });
       swiper.on('swipRight', function () {
+        console.log('right');
         this.classList.remove('panels2');
         this.classList.add('panels1');
-        console.log('right');
+        self.$('.balls .first').classList.add('current');
+        self.$('.balls .second').classList.remove('current');
       });
-    } // renderSong(){
-    //     let songObj = this.songList[this.currentIndex]
-    //     this.$('.header h1').innerText = songObj.title
-    //     this.$('.header p').innerText = songObj.author + '-' + songObj.albumn
-    //     this.audio.src = songObj.url
-    //     this.loadLyrics()
-    // }
-
+    }
   }, {
     key: "loadSong",
     value: function loadSong() {
@@ -345,7 +339,7 @@ function () {
 
         _this5.setLyrics(data.lrc.lyric);
 
-        window.lyrics = data.lrc.lyric;
+        Window.lyrics = data.lrc.lyric;
       });
     }
   }, {
@@ -358,9 +352,11 @@ function () {
       if (currentTime > nextLineTime && this.lyricIndex < this.lyricsArr.length - 1) {
         this.lyricIndex++;
         var node = this.$('[data-time="' + this.lyricsArr[this.lyricIndex][0] + '"]');
-        if (node) this.setLyricToCenter(node);
-        this.$$('.panel-effect .lyric p')[0].innerText = this.lyricsArr[this.lyricIndex][1];
-        this.$$('.panel-effect .lyric p')[1].innerText = this.lyricsArr[this.lyricIndex + 1] ? this.lyricsArr[this.lyricIndex + 1][1] : '';
+        if (node) this.setLineToCenter(node);
+        this.$$('.panels-effect .lyrics p')[0].innerText = this.lyricsArr[this.lyricIndex][1];
+        this.$$('.panels-effect .lyrics p')[1].innerText = this.lyricsArr[this.lyricIndex + 1] ? this.lyricsArr[this.lyricIndex + 1][1] : '';
+        console.dir(this.$$('.panels-effect .lyrics p'));
+        console.log('999999999');
       }
     }
   }, {
@@ -394,30 +390,26 @@ function () {
         node.innerText = line[1];
         fragment.appendChild(node);
       });
-      this.$('.panel-lyrics .container').innerHTML = '';
-      this.$('.panel-lyrics .container').appendChild(fragment);
+      this.$('.panels-lyrics .container').innerHTML = '';
+      this.$('.panels-lyrics .container').appendChild(fragment);
     }
   }, {
     key: "setLineToCenter",
     value: function setLineToCenter(node) {
-      console.log(node);
-      var translateY = node.offsetTop - this.$('.panel-lyrics').offsetHeight / 2;
+      var translateY = node.offsetTop - this.$('.panels-lyrics').offsetHeight / 2;
       translateY = translateY > 0 ? translateY : 0;
-      this.$('panel-lyrics .container').style.transform = "translateY(-".concat(translateY, "px)");
-      this.$$('.panel-lyrics p').forEach(function (node) {
+      this.$('.panels-lyrics .container').style.transform = "translateY(-".concat(translateY, "px)");
+      this.$$('.panels-lyrics p').forEach(function (node) {
         return node.classList.remove('current');
       });
       node.classList.add('current');
     }
   }, {
-    key: "setPeogressBar",
-    value: function setPeogressBar() {
-      console.log('set setProgressBar');
+    key: "setProgressBar",
+    value: function setProgressBar() {
       var percent = this.audio.currentTime * 100 / this.audio.duration + '%';
-      console.log(percent);
       this.$('.bar .progress').style.width = percent;
       this.$('.time-start').innerText = this.formateTime(this.audio.currentTime);
-      console.log(this.$('.bar .progress').style.width);
     }
   }, {
     key: "formateTime",
@@ -462,7 +454,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59738" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60938" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
