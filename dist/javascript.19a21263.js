@@ -235,7 +235,7 @@ function () {
     value: function start() {
       var _this2 = this;
 
-      fetch('https:jirengu.github.io/data-mock/huawei-music/music-list.json').then(function (res) {
+      fetch('https://jirengu.github.io/data-mock/huawei-music/music-list.json').then(function (res) {
         return res.json();
       }).then(function (data) {
         console.log('data');
@@ -454,7 +454,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60938" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59223" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
