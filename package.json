@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "parcel build index.html --public-url=\"./\""
+    "build": "https://hejianxinsir.github.io/huawei-music/dist"
   },
   "homepage": "https://hejianxinsir.github.io/huawei-music/dist/index.html",
   "keywords": [],
