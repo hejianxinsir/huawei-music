@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "https://hejianxinsir.github.io/huawei-music/dist"
+    "build": "parcel build index.html --public-url=\"./\""
   },
+  "homepage": "https://hejianxinsir.github.io/huawei-music/dist/index.html",
   "keywords": [],
   "author": "",
   "license": "ISC",
